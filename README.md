@@ -1,9 +1,23 @@
-# Nightverb
+<p align="center">
+  <img src="extension/icons/icon.svg" width="120" alt="Nightverb logo">
+</p>
 
-**Slowed + reverb for any music in Firefox.** Slow tracks down in exact musical steps and add a
-lush studio reverb, on YouTube, SoundCloud, VK, Yandex Music, Spotify and pretty much any site.
+<h1 align="center">Nightverb</h1>
 
-*Русская версия ниже.*
+<p align="center">
+  <b>Slowed + reverb for any music in Firefox.</b><br>
+  Slow tracks down in exact musical steps and add a lush studio reverb,<br>
+  on YouTube, SoundCloud, VK, Yandex Music, Spotify and pretty much any site.
+</p>
+
+<p align="center">
+  <a href="https://github.com/prkldev/nightverb/releases/latest">Latest release</a> ·
+  <a href="#по-русски">По-русски</a>
+</p>
+
+<p align="center">
+  <img src="docs/store/popup-en.png" width="300" alt="Nightverb popup">
+</p>
 
 ## What it does
 

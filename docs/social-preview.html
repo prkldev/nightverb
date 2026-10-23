@@ -1,0 +1,72 @@
+<!doctype html>
+<!-- Source of docs/social-preview.png (GitHub social preview, 1280x640).
+     Render: firefox --headless --screenshot out.png --window-size=1280,640 file:///.../social-preview.html -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<style>
+  html, body { margin: 0; width: 1280px; height: 640px; overflow: hidden; }
+  body {
+    background:
+      radial-gradient(60% 80% at 100% 0%, rgba(244, 114, 182, 0.22), transparent 60%),
+      radial-gradient(55% 75% at 0% 100%, rgba(167, 139, 250, 0.26), transparent 60%),
+      #0d0a18;
+    color: #ece8f6;
+    font-family: "Segoe UI", system-ui, sans-serif;
+    display: flex;
+    align-items: center;
+    gap: 64px;
+    padding: 0 96px;
+    box-sizing: border-box;
+  }
+  .logo {
+    width: 300px; height: 300px; flex: none;
+    border-radius: 72px;
+    box-shadow: 0 30px 90px rgba(167, 139, 250, 0.35), 0 0 0 1px rgba(255, 255, 255, 0.06);
+  }
+  h1 {
+    margin: 0;
+    font-size: 108px;
+    font-weight: 800;
+    letter-spacing: -3px;
+    line-height: 1;
+  }
+  .tag {
+    margin: 18px 0 34px;
+    font-size: 34px;
+    color: #b9b0d4;
+    font-weight: 400;
+  }
+  .tag b {
+    font-weight: 700;
+    background: linear-gradient(90deg, #a78bfa, #f472b6);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .pills { display: flex; flex-wrap: wrap; gap: 12px; max-width: 760px; }
+  .pill {
+    padding: 10px 20px;
+    border-radius: 999px;
+    border: 1px solid #3a2f5a;
+    background: rgba(22, 17, 38, 0.8);
+    font-size: 22px;
+    color: #d8d1ee;
+  }
+  .pill.hot { border-color: #a78bfa; background: rgba(167, 139, 250, 0.18); }
+</style>
+</head>
+<body>
+  <img class="logo" src="../extension/icons/icon.svg" alt="">
+  <div>
+    <h1>Nightverb</h1>
+    <p class="tag"><b>slowed + reverb</b> for any music in Firefox</p>
+    <div class="pills">
+      <span class="pill hot">0.79x · −4 semitones</span>
+      <span class="pill">studio reverb</span>
+      <span class="pill">Spotify · YouTube · Yandex Music</span>
+      <span class="pill">free &amp; open source</span>
+    </div>
+  </div>
+</body>
+</html>
