@@ -8,7 +8,7 @@ extension itself (`_locales`), the rest is filled in on the site.
 - **Support site:** https://github.com/prkldev/nightverb/issues
 - **Homepage:** https://github.com/prkldev/nightverb
 - **License:** MIT
-- **Screenshots:** `popup-ru.png`, `popup-en.png` (this folder)
+- **Screenshots:** `shot-1-en.png`, `shot-2-en.png`, `shot-3-en.png` (this folder; `shot-*-ru.png` for Russian posts). Source: `shots.html`, render with `tools/shot.mjs`
 
 ---
 

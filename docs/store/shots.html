@@ -1,0 +1,104 @@
+<!doctype html>
+<!-- Store screenshots (1280x800 CSS, rendered at 1.5x = 1920x1200):
+     node tools/shot.mjs "file:///.../docs/store/shots.html?n=1&lang=en" 1280 800 1.5 out.png -->
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  html, body { margin: 0; width: 1280px; height: 800px; overflow: hidden; }
+  body {
+    background:
+      radial-gradient(60% 80% at 100% 0%, rgba(244, 114, 182, 0.2), transparent 60%),
+      radial-gradient(55% 75% at 0% 100%, rgba(167, 139, 250, 0.24), transparent 60%),
+      #0d0a18;
+    color: #ece8f6;
+    font-family: "Segoe UI", system-ui, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 90px;
+    box-sizing: border-box;
+  }
+  .text { max-width: 560px; }
+  .brand { display: flex; align-items: center; gap: 14px; font-size: 26px; font-weight: 700; color: #cfc6ea; margin-bottom: 26px; }
+  .brand img { width: 46px; height: 46px; border-radius: 12px; }
+  h1 { margin: 0; font-size: 64px; line-height: 1.05; font-weight: 800; letter-spacing: -1.5px; }
+  h1 em {
+    font-style: normal;
+    background: linear-gradient(90deg, #a78bfa, #f472b6);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .sub { margin: 22px 0 0; font-size: 25px; line-height: 1.45; color: #b9b0d4; }
+  ul { margin: 28px 0 0; padding: 0; list-style: none; display: grid; gap: 12px; }
+  li { font-size: 22px; color: #d8d1ee; display: flex; gap: 12px; align-items: baseline; }
+  li b { color: #fff; font-variant-numeric: tabular-nums; min-width: 64px; }
+  li::before { content: ""; width: 9px; height: 9px; border-radius: 50%; background: linear-gradient(90deg, #a78bfa, #f472b6); flex: none; transform: translateY(-3px); }
+  .frame {
+    flex: none;
+    border-radius: 22px;
+    overflow: hidden;
+    box-shadow: 0 40px 100px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(255, 255, 255, 0.07), 0 0 120px rgba(167, 139, 250, 0.18);
+    position: relative;
+  }
+  .frame img { display: block; position: absolute; left: 0; }
+</style>
+</head>
+<body>
+  <div class="text">
+    <div class="brand"><img src="../../extension/icons/icon-128.png" alt="">Nightverb</div>
+    <h1 id="title"></h1>
+    <p class="sub" id="sub"></p>
+    <ul id="list"></ul>
+  </div>
+  <div class="frame" id="frame"><img id="shot" alt=""></div>
+<script>
+const q = new URLSearchParams(location.search);
+const n = q.get("n") || "1";
+const lang = q.get("lang") === "ru" ? "ru" : "en";
+
+// popup image is 340x752 CSS px (rendered at 2x); crops are in those units
+const T = {
+  en: {
+    1: { title: "<em>Slowed + reverb</em><br>for any music in Firefox",
+         sub: "Slow any track down and add a lush studio reverb in one click.",
+         list: ["YouTube, SoundCloud, VK, Yandex Music", "Spotify with the free Windows component", "No account, no trial, no data collected"],
+         crop: { y: 0, h: 752, scale: 0.96 } },
+    2: { title: "Slow down in <em>exact musical steps</em>",
+         sub: "Every step is one semitone, so tracks stay in tune. Pitch goes down with the speed, like real slowed tracks.",
+         list: ["<b>0.94x</b> one semitone lower", "<b>0.79x</b> classic slowed (major third)", "<b>0.67x</b> a fifth lower", "<b>0.5x</b> exactly one octave"],
+         crop: { y: 64, h: 196, scale: 1.65 } },
+    3: { title: "<em>Studio reverb</em><br>with 7 presets",
+         sub: "Slowed + Reverb, Vapor, Space, Cathedral, Hall, Lo-fi room, Room. Fine-tune decay, size, brightness and more.",
+         list: ["Players can't reset your speed", "Hotkeys: Alt+Shift+R, Alt+Shift+Up/Down", "English and Russian"],
+         crop: { y: 262, h: 448, scale: 1.35 } },
+  },
+  ru: {
+    1: { title: "<em>Slowed + reverb</em><br>для любой музыки",
+         sub: "Замедление и студийный реверб для всего, что играет в Firefox, в один клик.",
+         list: ["YouTube, SoundCloud, VK, Яндекс Музыка", "Spotify через бесплатный компонент для Windows", "Без регистрации, пробных периодов и сбора данных"],
+         crop: { y: 0, h: 752, scale: 0.96 } },
+    2: { title: "Замедление <em>ровными музыкальными шагами</em>",
+         sub: "Каждый шаг ровно на полутон, трек остаётся в тональности. Тон опускается вместе со скоростью, как в настоящих slowed.",
+         list: ["<b>0.94</b> на полутон ниже", "<b>0.79</b> классический slowed (терция)", "<b>0.67</b> на квинту ниже", "<b>0.5</b> ровно на октаву"],
+         crop: { y: 64, h: 196, scale: 1.65 } },
+    3: { title: "<em>Студийный реверб</em><br>и 7 пресетов",
+         sub: "Slowed + Reverb, Vapor, Космос, Собор, Зал, Lo-fi комната, Комната. Хвост, размер, яркость и другие настройки.",
+         list: ["Плееры не сбрасывают скорость", "Горячие клавиши: Alt+Shift+R, Alt+Shift+↑/↓", "Русский и английский"],
+         crop: { y: 262, h: 448, scale: 1.35 } },
+  },
+}[lang][n];
+
+document.getElementById("title").innerHTML = T.title;
+document.getElementById("sub").textContent = T.sub;
+document.getElementById("list").innerHTML = T.list.map((x) => `<li><span>${x}</span></li>`).join("");
+const c = T.crop;
+const frame = document.getElementById("frame");
+const img = document.getElementById("shot");
+img.src = `popup-${lang}@2x.png`;
+img.style.width = `${340 * c.scale}px`;
+img.style.top = `${-c.y * c.scale}px`;
+frame.style.width = `${340 * c.scale}px`;
+frame.style.height = `${c.h * c.scale}px`;
+</script>
+</body>
+</html>
