@@ -6,8 +6,9 @@
   "description": "__MSG_extDescription__",
   "default_locale": "en",
   "icons": {
-    "48": "icons/icon.svg",
-    "96": "icons/icon.svg"
+    "48": "icons/icon-48.png",
+    "96": "icons/icon-96.png",
+    "128": "icons/icon-128.png"
   },
   "permissions": ["nativeMessaging", "storage", "alarms"],
   "host_permissions": ["<all_urls>"],
