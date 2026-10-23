@@ -34,7 +34,7 @@
 
 ## Нужно от владельца (свои аккаунты)
 
-- [ ] GitHub: создать публичный репозиторий `nightverb`, запушить, поставить тег `v1.5.0` (CI сам соберёт релиз)
+- [x] GitHub: https://github.com/prkldev/nightverb, релиз v1.5.0 собран CI (exe + zip расширения), ссылка кнопки "Скачать" проверена
 - [x] Ссылка на скачивание компонента и адреса в docs/store/listing.md вписаны (prkldev/nightverb)
 - [ ] SignPath Foundation: подать заявку на бесплатную подпись (signpath.org, раздел для open-source)
 - [ ] addons.mozilla.org: загрузить zip, вставить тексты из docs/store/listing.md
