@@ -13,6 +13,8 @@
   "pitchHint": { "message": "как в настоящих slowed" },
   "permText": { "message": "Чтобы менять скорость, нужен доступ к сайтам." },
   "permButton": { "message": "Разрешить" },
+  "reloadText": { "message": "Обновите вкладку, чтобы скорость заработала на ней." },
+  "reloadButton": { "message": "Обновить" },
 
   "reverbTitle": { "message": "Реверб" },
   "reverbSwitch": { "message": "Реверб вкл/выкл" },

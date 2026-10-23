@@ -37,11 +37,16 @@
     if (area === "local" && NV_KEYS.some((k) => k in changes)) refresh();
   });
 
-  // Only frames that actually play something answer, so the popup gets the player's frame.
+  // A frame that plays something answers at once, so the popup gets the player's frame.
+  // The top frame also answers (a bit later) when nothing plays, so the popup knows
+  // Nightverb is present on the tab.
   browser.runtime.onMessage.addListener((msg) => {
     if (!msg || msg.type !== "nv-media") return undefined;
     document.dispatchEvent(new CustomEvent("nightverb:report"));
     if (media && media.playing > 0) return Promise.resolve(media);
+    if (window === window.top) {
+      return new Promise((resolve) => setTimeout(() => resolve(media || { playing: 0 }), 150));
+    }
     return undefined;
   });
 

@@ -57,6 +57,7 @@ let lastError = "";
 let lastPresetId = "slowed";
 let hasSitePermission = true;
 let tabMedia = null;        // what's playing in the active tab (from content.js)
+let activeTab = null;
 let isWindows = true;
 let downloadClicked = false;
 
@@ -179,6 +180,19 @@ function renderSpeed() {
   }
   $("speed-card").classList.toggle("dim", !settings.speedEnabled);
   $("perm").hidden = hasSitePermission;
+  $("reload").hidden = !needsReload();
+}
+
+// The tab is playing sound, speed is on, but Nightverb couldn't reach its player:
+// the tab was open before Nightverb was installed/updated. One reload fixes it.
+function needsReload() {
+  if (!activeTab || !activeTab.audible || !nvSpeedState(settings).active || !hasSitePermission) return false;
+  let url;
+  try { url = new URL(activeTab.url || ""); } catch (e) { return false; }
+  if (!/^https?:$/.test(url.protocol)) return false;
+  if (/(^|\.)(addons\.mozilla\.org|accounts\.firefox\.com)$/.test(url.hostname)) return false; // extensions can't run there
+  if (!tabMedia) return true; // no Nightverb script in the tab at all
+  return Boolean(tabMedia.late) && !tabMedia.speedControlled;
 }
 
 function renderPower() {
@@ -388,11 +402,13 @@ function stopPolling() {
 async function loadTabMedia() {
   try {
     const [tab] = await browser.tabs.query({ active: true, currentWindow: true });
+    activeTab = tab || null;
     tabMedia = tab ? (await browser.tabs.sendMessage(tab.id, { type: "nv-media" })) || null : null;
   } catch (e) {
-    tabMedia = null; // no content script there (about: pages, the add-ons store)
+    tabMedia = null; // no content script there (about: pages, the add-ons store, tabs opened before install)
   }
   renderStatus();
+  renderSpeed();
 }
 
 // ---------- actions ----------
@@ -493,6 +509,11 @@ async function init() {
     }
     save(0);
     ensureEngine();
+  });
+
+  $("reload-tab").addEventListener("click", async () => {
+    if (activeTab) await browser.tabs.reload(activeTab.id);
+    window.close();
   });
 
   $("need-download").addEventListener("click", () => {

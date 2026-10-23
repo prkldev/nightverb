@@ -13,6 +13,8 @@
   "pitchHint": { "message": "like real slowed tracks" },
   "permText": { "message": "To change speed, Nightverb needs access to websites." },
   "permButton": { "message": "Allow" },
+  "reloadText": { "message": "Reload this tab to apply the speed here." },
+  "reloadButton": { "message": "Reload" },
 
   "reverbTitle": { "message": "Reverb" },
   "reverbSwitch": { "message": "Reverb on/off" },

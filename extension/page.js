@@ -36,6 +36,10 @@
   // active: speed is on; rate: playback speed; pitch: tone follows speed (real "slowed")
   let speed = { active: false, rate: 1, pitch: true };
 
+  // Injected into a page that was already open (extension just installed or updated):
+  // players created before us can't be found until they act, so the popup may ask for a reload.
+  const lateStart = document.readyState !== "loading";
+
   const siteValues = new WeakMap(); // element -> what the site last set { playbackRate, defaultPlaybackRate, preservesPitch }
   const controlled = new WeakSet();  // elements whose real speed values are ours right now
   const known = new Set();           // WeakRefs to every media element we've met (incl. ones not in the page)
@@ -552,8 +556,9 @@
   function report() {
     clearTimeout(reportTimer);
     reportTimer = 0;
-    const s = { playing: 0, builtin: 0, protected: 0, blocked: 0, siteGraph: 0 };
+    const s = { playing: 0, builtin: 0, protected: 0, blocked: 0, siteGraph: 0, speedControlled: 0, late: lateStart };
     forEachMedia((el) => {
+      if (controlled.has(el)) s.speedControlled++;
       if (el.paused || el.muted || isLive(el)) return;
       s.playing++;
       const siteCtx = siteGraph.elements.get(el);
