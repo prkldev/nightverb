@@ -1,0 +1,104 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nightverb</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <!-- Texts come from _locales (data-i18n*), in Firefox's UI language. -->
+  <header class="top">
+    <div class="brand">
+      <img src="icons/icon.svg" alt="" width="34" height="34">
+      <div>
+        <h1>Nightverb</h1>
+        <div class="status" id="status"><i></i><span data-i18n="statusConnecting"></span></div>
+      </div>
+    </div>
+    <button id="power" class="power" type="button" data-i18n-title="powerTitle" aria-pressed="false">
+      <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+        <path d="M12 3v8" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+        <path d="M6.4 6.6a8 8 0 1 0 11.2 0" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+      </svg>
+    </button>
+  </header>
+
+  <section class="card" id="speed-card">
+    <div class="card-head">
+      <h2 data-i18n="speedTitle"></h2>
+      <label class="switch" data-i18n-title="speedSwitch">
+        <input type="checkbox" id="speed-on">
+        <span></span>
+      </label>
+    </div>
+
+    <div class="speed-top">
+      <output id="speed-val" class="speed-val"></output>
+      <span id="speed-st" class="speed-st"></span>
+    </div>
+    <div class="steps" id="speed-steps" data-i18n-aria="stepsLabel"></div>
+    <input type="range" id="speed-range" min="50" max="150" step="1" data-i18n-aria="speedTitle">
+
+    <label class="check">
+      <input type="checkbox" id="pitch">
+      <span><span data-i18n="pitchLabel"></span> <em data-i18n="pitchHint"></em></span>
+    </label>
+
+    <div class="notice" id="perm" hidden>
+      <span data-i18n="permText"></span>
+      <button id="perm-grant" class="btn small" type="button" data-i18n="permButton"></button>
+    </div>
+  </section>
+
+  <section class="card" id="reverb-card">
+    <div class="card-head">
+      <h2 data-i18n="reverbTitle"></h2>
+      <label class="switch" data-i18n-title="reverbSwitch">
+        <input type="checkbox" id="reverb-on">
+        <span></span>
+      </label>
+    </div>
+
+    <!-- Shown only on sites whose audio the browser won't let extensions touch. -->
+    <div id="need" class="need" hidden>
+      <h3 id="need-title"></h3>
+      <p data-i18n="needText"></p>
+      <button id="need-download" class="btn" type="button" data-i18n="needDownload" hidden></button>
+      <p id="need-after" class="need-after" data-i18n="needAfterDownload" hidden></p>
+      <p id="need-note" class="muted"></p>
+    </div>
+
+    <div id="controls">
+      <div class="presets" id="presets" role="radiogroup" data-i18n-aria="presetsLabel"></div>
+
+      <div class="sliders" id="main-sliders"></div>
+
+      <details id="advanced">
+        <summary data-i18n="advanced"></summary>
+        <div class="sliders" id="adv-sliders"></div>
+        <p class="hint" id="latency-hint"></p>
+        <label class="check" id="component-row" hidden>
+          <input type="checkbox" id="use-component">
+          <span><span data-i18n="componentLabel"></span> <em id="component-state"></em></span>
+        </label>
+        <button id="reset" class="btn ghost" type="button" data-i18n="reset"></button>
+      </details>
+
+      <div class="meters" id="meters" hidden>
+        <div class="meter"><span>Firefox</span><div class="bar"><i id="m-in"></i></div></div>
+        <div class="meter"><span data-i18n="meterReverb"></span><div class="bar wet"><i id="m-out"></i></div></div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span id="info"></span>
+    <span class="keys"><span class="key">Alt+Shift+R</span><span class="key">Alt+Shift+↑↓</span></span>
+  </footer>
+
+  <script src="presets.js"></script>
+  <script src="native.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>

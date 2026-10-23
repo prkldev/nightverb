@@ -1,0 +1,58 @@
+# Every push: build the Windows component, run its DSP self-test, lint the extension.
+# Tags like v1.5.0: also publish a GitHub release with nightverb.exe and the extension zip.
+# The extension's download button points at releases/latest/download/nightverb.exe.
+name: build
+
+on:
+  push:
+    branches: [main]
+    tags: ["v*"]
+  pull_request:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "8.0.x"
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Build audio component
+        run: dotnet publish helper -c Release -o dist
+
+      - name: DSP self-test
+        shell: pwsh
+        run: |
+          $out = & dist\nightverb.exe --selftest | Out-String
+          Write-Output $out
+          if ($out -notmatch "SELFTEST OK") { exit 1 }
+
+      # Code signing (SignPath Foundation, free for open source) goes here once the
+      # project is approved: sign dist\nightverb.exe before it is uploaded.
+
+      - name: Lint and package extension
+        run: |
+          npx --yes web-ext@8.3.0 lint --source-dir extension --warnings-as-errors
+          npx --yes web-ext@8.3.0 build --source-dir extension --artifacts-dir dist --filename nightverb-extension-{version}.zip
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: nightverb
+          path: dist/*
+
+      - name: Publish release
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            dist/nightverb.exe
+            dist/nightverb-extension-*.zip

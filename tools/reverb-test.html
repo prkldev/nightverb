@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>NVR running</title>
+<style>body { font: 14px system-ui, sans-serif; background: #111; color: #eee; padding: 20px; }</style>
+</head>
+<body>
+<h1>Nightverb built-in reverb test</h1>
+<p>Open from http://127.0.0.1:8737/reverb-test.html (localhost:8737 then counts as another site).
+Needs autoplay allowed (media.autoplay.default = 0).</p>
+<pre id="out"></pre>
+<script>
+"use strict";
+const other = "http://localhost:8737";
+let media = null;
+document.addEventListener("nightverb:media", (e) => { media = e.detail; });
+
+const cases = {};
+function add(name, src, opts = {}) {
+  const el = document.createElement("audio");
+  if (opts.cors) el.crossOrigin = "anonymous";
+  el.src = src;
+  el.loop = true;
+  document.body.appendChild(el);
+  el.play().catch((err) => { el.dataset.err = err.name; });
+  cases[name] = el;
+}
+
+// audible: same site, quiet clicks (reverb tails fill the gaps)
+add("same", "/click.wav");
+// silent ones, just to check how each kind is handled
+fetch("/silence.wav").then((r) => r.blob()).then((b) => add("blob", URL.createObjectURL(b)));
+add("cross", other + "/silence.wav");                       // other site, no permission: must NOT be touched
+add("crossCors", other + "/silence.wav?cors=1", { cors: true }); // other site that allows it
+
+setTimeout(() => {
+  const t0 = {};
+  for (const [k, el] of Object.entries(cases)) t0[k] = el.currentTime;
+  setTimeout(() => {
+    const moving = Object.entries(cases).map(([k, el]) => `${k}:${(el.currentTime - t0[k]).toFixed(1)}${el.dataset.err ? "!" + el.dataset.err : ""}`).join(" ");
+    document.dispatchEvent(new CustomEvent("nightverb:report"));
+    const text = `NVR media=${media} moving=[${moving}]`;
+    document.getElementById("out").textContent = text;
+    document.title = text;
+  }, 2000);
+}, 2500);
+</script>
+</body>
+</html>

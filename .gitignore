@@ -1,0 +1,9 @@
+helper/bin/
+helper/obj/
+dist/
+build/
+node_modules/
+web-ext-artifacts/
+*.user
+*.suo
+.vs/

@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>NVW running</title>
+<style>body { font: 14px system-ui, sans-serif; background: #111; color: #eee; padding: 20px; }</style>
+</head>
+<body>
+<h1>Nightverb test: a site with its own Web Audio graph (like Yandex Music)</h1>
+<p>Open from http://127.0.0.1:8737/webaudio-test.html with autoplay allowed.</p>
+<pre id="out"></pre>
+<script>
+"use strict";
+let media = null;
+document.addEventListener("nightverb:media", (e) => { media = e.detail; });
+
+// Built right away, before Nightverb has its settings (that's what Yandex does).
+const ctx = new AudioContext();
+const audio = new Audio("/click.wav");
+audio.loop = true;
+const src = ctx.createMediaElementSource(audio);
+const gain = ctx.createGain();
+const analyser = ctx.createAnalyser();
+src.connect(gain);
+gain.connect(analyser);
+gain.connect(ctx.destination);
+ctx.resume();
+audio.play();
+
+// The site's own analyser must keep working (players draw visualizers with it).
+const buf = new Float32Array(2048);
+let sitePeak = 0;
+setInterval(() => {
+  analyser.getFloatTimeDomainData(buf);
+  for (const v of buf) sitePeak = Math.max(sitePeak, Math.abs(v));
+}, 50);
+
+// Mid-playback the site rewires its output, as players do on track change.
+setTimeout(() => {
+  gain.disconnect(ctx.destination);
+  gain.connect(ctx.destination);
+}, 2500);
+
+setTimeout(() => {
+  document.dispatchEvent(new CustomEvent("nightverb:report"));
+  const text = `NVW media=${media} playing=${!audio.paused} t=${audio.currentTime.toFixed(1)} siteAnalyserPeak=${sitePeak.toFixed(3)} ctx=${ctx.state}`;
+  document.getElementById("out").textContent = text;
+  document.title = text;
+}, 5000);
+</script>
+</body>
+</html>

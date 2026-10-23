@@ -1,0 +1,62 @@
+{
+  "manifest_version": 3,
+  "name": "__MSG_extName__",
+  "short_name": "Nightverb",
+  "version": "1.5.0",
+  "description": "__MSG_extDescription__",
+  "default_locale": "en",
+  "icons": {
+    "48": "icons/icon.svg",
+    "96": "icons/icon.svg"
+  },
+  "permissions": ["nativeMessaging", "storage", "alarms"],
+  "host_permissions": ["<all_urls>"],
+  "background": {
+    "scripts": ["presets.js", "native.js", "background.js"]
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["page.js"],
+      "run_at": "document_start",
+      "all_frames": true,
+      "match_about_blank": true,
+      "world": "MAIN"
+    },
+    {
+      "matches": ["<all_urls>"],
+      "js": ["presets.js", "content.js"],
+      "run_at": "document_start",
+      "all_frames": true,
+      "match_about_blank": true
+    }
+  ],
+  "action": {
+    "default_title": "Nightverb",
+    "default_popup": "popup.html",
+    "default_icon": "icons/icon.svg"
+  },
+  "commands": {
+    "toggle-all": {
+      "suggested_key": { "default": "Alt+Shift+R" },
+      "description": "__MSG_cmdToggle__"
+    },
+    "speed-down": {
+      "suggested_key": { "default": "Alt+Shift+Down" },
+      "description": "__MSG_cmdSlower__"
+    },
+    "speed-up": {
+      "suggested_key": { "default": "Alt+Shift+Up" },
+      "description": "__MSG_cmdFaster__"
+    }
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "nightverb@reverb.fx",
+      "strict_min_version": "128.0",
+      "data_collection_permissions": {
+        "required": ["none"]
+      }
+    }
+  }
+}

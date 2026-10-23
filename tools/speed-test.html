@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>NVTEST running</title>
+<style>
+  body { font: 14px system-ui, sans-serif; background: #111; color: #eee; padding: 20px; }
+  td, th { padding: 4px 12px; text-align: left; }
+  .ok { color: #4ade80; } .bad { color: #f87171; }
+</style>
+</head>
+<body>
+<h1>Nightverb speed test</h1>
+<p>Each row is a different kind of player. "Real" is measured from how fast playback actually moves;
+"site sees" is what the page reads from playbackRate.</p>
+<table id="t"><tr><th>Player</th><th>Real speed</th><th>Site sees</th></tr></table>
+<div id="host"></div>
+<script>
+"use strict";
+// 30 s of silence as a WAV blob (8 kHz mono 16-bit).
+function silentWav(seconds) {
+  const sr = 8000, n = sr * seconds, buf = new ArrayBuffer(44 + n * 2), v = new DataView(buf);
+  const w = (o, s) => [...s].forEach((c, i) => v.setUint8(o + i, c.charCodeAt(0)));
+  w(0, "RIFF"); v.setUint32(4, 36 + n * 2, true); w(8, "WAVE"); w(12, "fmt ");
+  v.setUint32(16, 16, true); v.setUint16(20, 1, true); v.setUint16(22, 1, true);
+  v.setUint32(24, sr, true); v.setUint32(28, sr * 2, true); v.setUint16(32, 2, true); v.setUint16(34, 16, true);
+  w(36, "data"); v.setUint32(40, n * 2, true);
+  return URL.createObjectURL(new Blob([buf], { type: "audio/wav" }));
+}
+const src = silentWav(30);
+const cases = {};
+
+// Diagnostics: is page.js hooked in, and what speed state does content.js send?
+const getter = Object.getOwnPropertyDescriptor(HTMLMediaElement.prototype, "playbackRate").get;
+const injected = !/\[native code\]/.test(Function.prototype.toString.call(getter));
+let lastSpeedMsg = "none";
+document.addEventListener("nightverb:speed", (e) => { lastSpeedMsg = String(e.detail); });
+document.dispatchEvent(new CustomEvent("nightverb:hello"));
+
+function mk(tag) { const el = document.createElement(tag); el.muted = true; el.src = src; return el; }
+
+// 1. plain element in the page
+cases.dom = mk("audio"); document.body.appendChild(cases.dom); cases.dom.play();
+
+// 2. never added to the page (Spotify-style)
+cases.offdom = new Audio(src); cases.offdom.muted = true; cases.offdom.play();
+
+// 3. inside a closed shadow root, started by autoplay (no play() call)
+{
+  const root = document.getElementById("host").attachShadow({ mode: "closed" });
+  const el = document.createElement("audio"); el.muted = true; el.autoplay = true; el.src = src;
+  root.appendChild(el); cases.shadow = el;
+}
+
+// 4. a player that keeps forcing 1x
+cases.fighter = mk("audio"); document.body.appendChild(cases.fighter);
+cases.fighter.addEventListener("ratechange", () => { cases.fighter.playbackRate = 1; });
+setInterval(() => { cases.fighter.playbackRate = 1; cases.fighter.defaultPlaybackRate = 1; }, 100);
+cases.fighter.play();
+
+// 5. a player that loads a new track after starting (load() resets speed)
+cases.reload = mk("audio"); document.body.appendChild(cases.reload); cases.reload.play();
+setTimeout(() => { cases.reload.src = src; cases.reload.load(); cases.reload.play(); }, 500);
+
+// 6. video
+cases.video = mk("video"); cases.video.width = 1; document.body.appendChild(cases.video); cases.video.play();
+
+function measure(label, expect) {
+  return new Promise((resolve) => {
+    const start = {};
+    const w0 = performance.now();
+    for (const [k, el] of Object.entries(cases)) start[k] = el.currentTime;
+    setTimeout(() => {
+      const dt = (performance.now() - w0) / 1000;
+      const parts = [];
+      const t = document.getElementById("t");
+      for (const [k, el] of Object.entries(cases)) {
+        const real = (el.currentTime - start[k]) / dt;
+        parts.push(`${k}=${real.toFixed(2)}/${el.playbackRate}`);
+        const tr = t.insertRow();
+        tr.insertCell().textContent = `${label}: ${k}`;
+        const c = tr.insertCell(); c.textContent = real.toFixed(2) + "x"; c.className = Math.abs(real - expect) < 0.05 ? "ok" : "bad";
+        tr.insertCell().textContent = el.playbackRate + "x";
+      }
+      resolve(`${label}[${parts.join(" ")}]`);
+    }, 3000);
+  });
+}
+
+setTimeout(async () => {
+  const on = await measure("ON", 0.8);
+  // Phase 2: switch speed off the same way the extension does; everything must go back to 1x.
+  document.dispatchEvent(new CustomEvent("nightverb:speed", { detail: JSON.stringify({ active: false, rate: 1, pitch: true }) }));
+  await new Promise((r) => setTimeout(r, 500));
+  const off = await measure("OFF", 1);
+  document.title = `NVTEST injected=${injected} msg=${lastSpeedMsg} ${on} ${off}`;
+}, 1500);
+</script>
+</body>
+</html>
