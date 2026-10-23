@@ -39,10 +39,12 @@ jobs:
       # Code signing (SignPath Foundation, free for open source) goes here once the
       # project is approved: sign dist\nightverb.exe before it is uploaded.
 
-      - name: Lint and package extension
-        run: |
-          npx --yes web-ext@8.3.0 lint --source-dir extension --warnings-as-errors
-          npx --yes web-ext@8.3.0 build --source-dir extension --artifacts-dir dist --filename nightverb-extension-{version}.zip
+      # one command per step: a failing lint must fail the build
+      - name: Lint extension
+        run: npx --yes web-ext@8.3.0 lint --source-dir extension --warnings-as-errors
+
+      - name: Package extension
+        run: npx --yes web-ext@8.3.0 build --source-dir extension --artifacts-dir dist --filename "nightverb-extension-{version}.zip"
 
       - uses: actions/upload-artifact@v4
         with:

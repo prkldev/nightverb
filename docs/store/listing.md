@@ -5,8 +5,8 @@ extension itself (`_locales`), the rest is filled in on the site.
 
 - **Categories:** Photos, Music & Videos
 - **Tags:** slowed, reverb, slowed and reverb, music, audio, speed, pitch, nightcore, spotify, youtube
-- **Support site:** https://github.com/OWNER/nightverb/issues
-- **Homepage:** https://github.com/OWNER/nightverb
+- **Support site:** https://github.com/prkldev/nightverb/issues
+- **Homepage:** https://github.com/prkldev/nightverb
 - **License:** MIT
 - **Screenshots:** `popup-ru.png`, `popup-en.png` (this folder)
 
@@ -37,7 +37,7 @@ WORKS EVERYWHERE
 THE REST
 • Hotkeys: Alt+Shift+R on/off, Alt+Shift+Up/Down one semitone.
 • Russian and English.
-• No data collected, no account, no trial. Open source: https://github.com/OWNER/nightverb
+• No data collected, no account, no trial. Open source: https://github.com/prkldev/nightverb
 
 ---
 
@@ -66,7 +66,7 @@ Slowed + reverb для любой музыки в Firefox: Яндекс Музы
 ЕЩЁ
 • Горячие клавиши: Alt+Shift+R вкл/выкл, Alt+Shift+↑/↓ на полутон.
 • Русский и английский язык.
-• Ничего не собирает, без регистрации и пробных периодов. Открытый код: https://github.com/OWNER/nightverb
+• Ничего не собирает, без регистрации и пробных периодов. Открытый код: https://github.com/prkldev/nightverb
 
 ---
 

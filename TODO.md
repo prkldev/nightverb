@@ -35,7 +35,7 @@
 ## Нужно от владельца (свои аккаунты)
 
 - [ ] GitHub: создать публичный репозиторий `nightverb`, запушить, поставить тег `v1.5.0` (CI сам соберёт релиз)
-- [ ] Вписать ссылку `https://github.com/<логин>/nightverb/releases/latest/download/nightverb.exe` в `NV_COMPONENT_URL` (presets.js) и `OWNER` в docs/store/listing.md
+- [x] Ссылка на скачивание компонента и адреса в docs/store/listing.md вписаны (prkldev/nightverb)
 - [ ] SignPath Foundation: подать заявку на бесплатную подпись (signpath.org, раздел для open-source)
 - [ ] addons.mozilla.org: загрузить zip, вставить тексты из docs/store/listing.md
 - [ ] Послушать на живых Яндексе и Spotify

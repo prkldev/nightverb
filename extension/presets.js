@@ -92,9 +92,9 @@ const NV_DEFAULTS = {
   engineAvailable: false, // last known: is the component installed and reachable
 };
 
-// Where the popup sends people to get the Windows audio component.
-// Empty until the GitHub release exists (the button is hidden meanwhile).
-const NV_COMPONENT_URL = "";
+// Where the popup sends people to get the Windows audio component
+// (always the newest GitHub release; built by .github/workflows/build.yml).
+const NV_COMPONENT_URL = "https://github.com/prkldev/nightverb/releases/latest/download/nightverb.exe";
 
 const NV_KEYS = Object.keys(NV_DEFAULTS);
 
