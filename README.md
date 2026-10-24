@@ -103,6 +103,22 @@ nightverb.exe --probe [s] [--pid] show the audio level of Firefox (or any proces
 
 Log: `%LOCALAPPDATA%\Nightverb\nightverb.log`.
 
+### Code signing policy
+
+Windows releases of the audio component (`nightverb.exe`) are to be signed with free code signing
+provided by [SignPath.io](https://about.signpath.io), certificate by [SignPath Foundation](https://signpath.org)
+(application in progress; until then the exe is unsigned and Windows SmartScreen may warn about it).
+
+- Builds are made only by GitHub Actions from this repository's source (`.github/workflows/build.yml`).
+- Committers and reviewers: [prkldev](https://github.com/prkldev)
+- Approvers (sign off every signed release): [prkldev](https://github.com/prkldev)
+
+**Privacy policy:** this program will not transfer any information to other networked systems unless
+specifically requested by the user or the person installing or operating it. The extension and the
+audio component process audio locally and never record or send it; settings stay on the computer.
+The installer only writes to `%LOCALAPPDATA%\Nightverb` and the current user's registry, and is removed
+from Windows Settings → Apps.
+
 ### Limits
 
 - The Windows component needs Windows 10 2004+ or Windows 11. Without it, DRM sites get slow-down only.

@@ -22,7 +22,7 @@
   "needBlockedTitle": { "message": "This site doesn't allow audio processing" },
   "needText": { "message": "Here, reverb works through the Nightverb audio component for Windows, which adds the effect at the system level. Slow-down works without it." },
   "needDownload": { "message": "Download the audio component" },
-  "needAfterDownload": { "message": "Run the downloaded nightverb.exe. Reverb turns on by itself, no need to close this popup." },
+  "needAfterDownload": { "message": "Run the downloaded nightverb.exe. Reverb turns on by itself, no need to close this popup. If Windows says \"Windows protected your PC\", click \"More info\", then \"Run anyway\"." },
   "needSoon": { "message": "The download link is coming in the next update." },
   "needWindowsOnly": { "message": "On sites like this, reverb is currently available on Windows only." },
   "componentLabel": { "message": "Windows audio component" },
