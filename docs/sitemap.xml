@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://prkldev.github.io/nightverb/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://prkldev.github.io/nightverb/ru/"/>
+  </url>
+  <url>
+    <loc>https://prkldev.github.io/nightverb/ru/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://prkldev.github.io/nightverb/"/>
+  </url>
+</urlset>

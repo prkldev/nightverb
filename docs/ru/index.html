@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nightverb - slowed + reverb для любой музыки в Firefox</title>
+<meta name="description" content="Бесплатное расширение для Firefox: замедление любой музыки ровными полутонами и студийный реверб. Работает на Яндекс Музыке, YouTube, SoundCloud, VK и Spotify. Без регистрации, открытый код.">
+<link rel="canonical" href="https://prkldev.github.io/nightverb/ru/">
+<link rel="alternate" hreflang="en" href="https://prkldev.github.io/nightverb/">
+<link rel="alternate" hreflang="ru" href="https://prkldev.github.io/nightverb/ru/">
+<link rel="alternate" hreflang="x-default" href="https://prkldev.github.io/nightverb/">
+<link rel="icon" href="../assets/icon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Nightverb - slowed + reverb для любой музыки в Firefox">
+<meta property="og:description" content="Замедление ровными полутонами и студийный реверб в один клик. Бесплатно и с открытым кодом.">
+<meta property="og:url" content="https://prkldev.github.io/nightverb/ru/">
+<meta property="og:image" content="https://prkldev.github.io/nightverb/social-preview.png">
+<meta property="og:locale" content="ru_RU">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="../assets/site.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Nightverb",
+  "alternateName": "Nightverb - slowed + reverb",
+  "inLanguage": "ru",
+  "description": "Расширение для Firefox: замедление музыки ровными полутонами и студийный реверб на Яндекс Музыке, YouTube, SoundCloud, VK, Spotify и большинстве сайтов.",
+  "applicationCategory": "MultimediaApplication",
+  "operatingSystem": "Firefox (Windows, macOS, Linux)",
+  "url": "https://prkldev.github.io/nightverb/ru/",
+  "downloadUrl": "https://addons.mozilla.org/ru/firefox/addon/nightverb-slowed-reverb/",
+  "image": "https://prkldev.github.io/nightverb/social-preview.png",
+  "license": "https://opensource.org/licenses/MIT",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "author": { "@type": "Person", "name": "prkldev", "url": "https://github.com/prkldev" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "inLanguage": "ru",
+  "mainEntity": [
+    { "@type": "Question", "name": "Как сделать slowed + reverb прямо в браузере?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Установите бесплатное расширение Nightverb для Firefox, включите трек и нажмите пресет Slowed + Reverb в окне Nightverb. Трек замедлится до 0.79 (на четыре полутона ниже) и получит студийный реверб. Скачивать песню не нужно." } },
+    { "@type": "Question", "name": "Работает ли на Яндекс Музыке?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Да. Замедление и реверб работают сразу на Яндекс Музыке, YouTube, SoundCloud, VK и большинстве других сайтов, в любой операционной системе." } },
+    { "@type": "Question", "name": "Работает ли на Spotify?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Spotify защищает звук, поэтому никакое расширение не может обработать его напрямую. В Windows реверб добавляет бесплатный необязательный аудиокомпонент Nightverb на уровне системы; окно расширения предлагает его только на таких сайтах. Никакая защита не обходится." } },
+    { "@type": "Question", "name": "Это бесплатно?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Да, полностью: без пробного периода, подписки и регистрации. Открытый код под лицензией MIT." } },
+    { "@type": "Question", "name": "Почему 0.94, 0.89, 0.79, а не круглые числа?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Каждая кнопка ровно на полутон ниже (0.5 это октава), поэтому замедленный трек остаётся в тональности, а не попадает между нот. 0.79 это четыре полутона, классический slowed." } },
+    { "@type": "Question", "name": "Собирает ли Nightverb данные?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Нет. Звук обрабатывается на вашем компьютере, ничего не записывается и никуда не отправляется. Настройки хранятся в браузере." } }
+  ]
+}
+</script>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="logo" href="./"><img src="../assets/icon.svg" alt="">Nightverb</a>
+    <nav>
+      <a href="#features">Возможности</a>
+      <a class="hide-sm" href="#faq">Вопросы</a>
+      <a href="https://github.com/prkldev/nightverb">GitHub</a>
+      <a href="../" lang="en" hreflang="en">EN</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="hero">
+      <div>
+        <h1><span class="grad">Slowed + reverb</span> для любой музыки в Firefox</h1>
+        <p class="lead">Замедление ровными музыкальными шагами и студийный реверб в один клик. Яндекс Музыка, YouTube, SoundCloud, VK, Spotify и большинство сайтов.</p>
+        <div class="cta">
+          <a class="btn" href="https://addons.mozilla.org/ru/firefox/addon/nightverb-slowed-reverb/">Установить в Firefox бесплатно</a>
+          <a class="btn ghost" href="https://github.com/prkldev/nightverb">Исходный код</a>
+        </div>
+        <p class="note">Без регистрации, пробных периодов и слежки. Открытый код (MIT).</p>
+      </div>
+      <div class="shot popup"><img src="../store/popup-ru@2x.png" width="680" height="1504" alt="Окно Nightverb: кнопки скорости и пресеты реверба"></div>
+    </div>
+
+    <section id="features">
+      <h2>Всё, что нужно для slowed + reverb</h2>
+      <p class="intro">Сделано человеком, который каждый день слушает slowed + reverb и устал от платных расширений с пробными периодами.</p>
+      <div class="cards">
+        <div class="card"><h3>Ровные музыкальные шаги</h3><p>Каждая кнопка скорости ровно на полутон ниже, трек остаётся в тональности. Тон опускается вместе со скоростью, как в настоящих slowed, или меняется только темп.</p></div>
+        <div class="card"><h3>Студийный реверб</h3><p>Семь пресетов (Slowed + Reverb, Vapor, Космос, Собор, Зал, Lo-fi комната, Комната) и тонкая настройка хвоста, размера, яркости и не только.</p></div>
+        <div class="card"><h3>Плеер не собьёт скорость</h3><p>Сайты любят возвращать 1x на следующем треке. Nightverb держит вашу скорость через треки, плейлисты и переходы по страницам.</p></div>
+      </div>
+      <ul class="steps">
+        <li><b>0.94</b> полутон</li>
+        <li><b>0.89</b> тон</li>
+        <li><b>0.84</b> малая терция</li>
+        <li><b>0.79</b> классический slowed</li>
+        <li><b>0.75</b> кварта</li>
+        <li><b>0.67</b> квинта</li>
+        <li><b>0.5</b> октава</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Работает там, где вы слушаете</h2>
+      <ul class="sites">
+        <li class="hot">Яндекс Музыка</li><li class="hot">YouTube</li><li class="hot">SoundCloud</li><li class="hot">VK</li><li>Spotify*</li><li>и большинство сайтов</li>
+      </ul>
+      <p class="intro">* Spotify защищает звук, и никакое расширение не может обработать его напрямую. В Windows реверб добавляет бесплатный необязательный аудиокомпонент Nightverb на уровне системы, не обходя никакую защиту. Окно расширения предлагает его только там, где он нужен.</p>
+      <div class="gallery">
+        <img src="../store/shot-2-ru.png" width="1920" height="1200" alt="Скорость ровными полутонами" loading="lazy">
+        <img src="../store/shot-3-ru.png" width="1920" height="1200" alt="Пресеты реверба и тонкая настройка" loading="lazy">
+      </div>
+    </section>
+
+    <section id="faq" class="faq">
+      <h2>Частые вопросы</h2>
+      <details><summary>Как сделать slowed + reverb прямо в браузере?</summary><p>Установите Nightverb для Firefox, включите трек и нажмите пресет <b>Slowed + Reverb</b> в окне Nightverb. Трек замедлится до 0.79 (на четыре полутона ниже) и получит студийный реверб. Скачивать песню не нужно.</p></details>
+      <details><summary>Работает ли на Яндекс Музыке?</summary><p>Да. Замедление и реверб работают сразу на Яндекс Музыке, YouTube, SoundCloud, VK и большинстве других сайтов, в любой операционной системе.</p></details>
+      <details><summary>Работает ли на Spotify?</summary><p>Spotify защищает звук, поэтому никакое расширение не может обработать его напрямую. В Windows реверб добавляет бесплатный необязательный аудиокомпонент Nightverb на уровне системы; окно расширения предложит его только на таких сайтах. Никакая защита не обходится.</p></details>
+      <details><summary>Это бесплатно?</summary><p>Да: без пробного периода, подписки и регистрации. Открытый код под лицензией MIT.</p></details>
+      <details><summary>Почему 0.94, 0.89, 0.79, а не круглые числа?</summary><p>Каждая кнопка ровно на полутон ниже (0.5 это октава), поэтому замедленный трек остаётся в тональности, а не попадает между нот. 0.79 это четыре полутона, классический slowed.</p></details>
+      <details><summary>Собирает ли расширение данные?</summary><p>Нет. Звук обрабатывается на вашем компьютере, ничего не записывается и никуда не отправляется. Настройки хранятся в браузере.</p></details>
+      <details><summary>А для Chrome или Edge?</summary><p>Пока Nightverb только для Firefox. Версия для Chrome и Edge в планах.</p></details>
+    </section>
+  </main>
+
+  <footer>
+    <div class="row">
+      <span>Nightverb · MIT · автор <a href="https://github.com/prkldev">prkldev</a></span>
+      <span><a href="https://addons.mozilla.org/ru/firefox/addon/nightverb-slowed-reverb/">Дополнения Firefox</a> · <a href="https://github.com/prkldev/nightverb/issues">Сообщить о проблеме</a> · <a href="../" hreflang="en">English</a></span>
+    </div>
+  </footer>
+</div>
+</body>
+</html>

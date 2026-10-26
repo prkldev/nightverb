@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nightverb - slowed + reverb for any music in Firefox</title>
+<meta name="description" content="Free Firefox extension that slows any music down in exact semitone steps and adds a studio reverb. Works on YouTube, SoundCloud, Yandex Music and Spotify. No account, no trial, open source.">
+<link rel="canonical" href="https://prkldev.github.io/nightverb/">
+<link rel="alternate" hreflang="en" href="https://prkldev.github.io/nightverb/">
+<link rel="alternate" hreflang="ru" href="https://prkldev.github.io/nightverb/ru/">
+<link rel="alternate" hreflang="x-default" href="https://prkldev.github.io/nightverb/">
+<link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Nightverb - slowed + reverb for any music in Firefox">
+<meta property="og:description" content="Slow any track down in exact semitone steps and add a lush studio reverb. Free and open source.">
+<meta property="og:url" content="https://prkldev.github.io/nightverb/">
+<meta property="og:image" content="https://prkldev.github.io/nightverb/social-preview.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="assets/site.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Nightverb",
+  "alternateName": "Nightverb - slowed + reverb",
+  "description": "Firefox extension that slows music down in exact semitone steps and adds a studio reverb, on YouTube, SoundCloud, Yandex Music, Spotify and most sites.",
+  "applicationCategory": "MultimediaApplication",
+  "operatingSystem": "Firefox (Windows, macOS, Linux)",
+  "url": "https://prkldev.github.io/nightverb/",
+  "downloadUrl": "https://addons.mozilla.org/firefox/addon/nightverb-slowed-reverb/",
+  "image": "https://prkldev.github.io/nightverb/social-preview.png",
+  "license": "https://opensource.org/licenses/MIT",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "author": { "@type": "Person", "name": "prkldev", "url": "https://github.com/prkldev" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "How do I make slowed + reverb music in my browser?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Install the free Nightverb extension for Firefox, play a track and click the Slowed + Reverb preset in the Nightverb popup. It slows the track to 0.79x (four semitones lower) and adds a studio reverb. No account or download of the song is needed." } },
+    { "@type": "Question", "name": "Does it work on Spotify?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Spotify protects its audio, so no browser extension can process it directly. On Windows, Nightverb's free optional audio component adds the reverb at the system level; the popup offers it only on such sites. It doesn't bypass any protection." } },
+    { "@type": "Question", "name": "Does it work on Yandex Music, YouTube and SoundCloud?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. Slow-down and reverb work right away on YouTube, SoundCloud, VK, Yandex Music and most other sites, on any operating system." } },
+    { "@type": "Question", "name": "Is Nightverb free?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes, completely free: no trial, no subscription, no account. It is open source under the MIT license." } },
+    { "@type": "Question", "name": "Why 0.94x, 0.89x, 0.79x and not round numbers?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Each button is exactly one musical semitone lower (0.5x is one octave), so a slowed track stays in tune instead of landing between notes. 0.79x is four semitones down, the classic slowed sound." } },
+    { "@type": "Question", "name": "Does Nightverb collect any data?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No. Audio is processed locally on your computer and never recorded or sent anywhere. Settings stay in your browser." } }
+  ]
+}
+</script>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="logo" href="./"><img src="assets/icon.svg" alt="">Nightverb</a>
+    <nav>
+      <a href="#features">Features</a>
+      <a class="hide-sm" href="#faq">FAQ</a>
+      <a href="https://github.com/prkldev/nightverb">GitHub</a>
+      <a href="ru/" lang="ru" hreflang="ru">RU</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="hero">
+      <div>
+        <h1><span class="grad">Slowed + reverb</span> for any music in Firefox</h1>
+        <p class="lead">Slow any track down in exact musical steps and add a lush studio reverb, in one click. YouTube, SoundCloud, Yandex Music, Spotify and most sites.</p>
+        <div class="cta">
+          <a class="btn" href="https://addons.mozilla.org/firefox/addon/nightverb-slowed-reverb/">Add to Firefox, it's free</a>
+          <a class="btn ghost" href="https://github.com/prkldev/nightverb">Source code</a>
+        </div>
+        <p class="note">No account, no trial, no tracking. Open source (MIT).</p>
+      </div>
+      <div class="shot popup"><img src="store/popup-en@2x.png" width="680" height="1504" alt="Nightverb popup: speed buttons and reverb presets"></div>
+    </div>
+
+    <section id="features">
+      <h2>Everything slowed + reverb needs</h2>
+      <p class="intro">Built by someone who listens to slowed + reverb every day and got tired of paywalled extensions.</p>
+      <div class="cards">
+        <div class="card"><h3>Exact musical steps</h3><p>Every speed button is exactly one semitone lower, so tracks stay in tune. Pitch goes down with the speed, like real slowed tracks, or switch to tempo only.</p></div>
+        <div class="card"><h3>Studio reverb</h3><p>Seven presets (Slowed + Reverb, Vapor, Space, Cathedral, Hall, Lo-fi room, Room) and fine controls for decay, size, brightness and more.</p></div>
+        <div class="card"><h3>Players can't reset it</h3><p>Sites love to snap back to 1x on the next track. Nightverb keeps your speed across tracks, playlists and page changes.</p></div>
+      </div>
+      <ul class="steps">
+        <li><b>0.94x</b> one semitone</li>
+        <li><b>0.89x</b> a whole tone</li>
+        <li><b>0.84x</b> minor third</li>
+        <li><b>0.79x</b> classic slowed</li>
+        <li><b>0.75x</b> a fourth</li>
+        <li><b>0.67x</b> a fifth</li>
+        <li><b>0.5x</b> one octave</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Works where you listen</h2>
+      <ul class="sites">
+        <li class="hot">YouTube</li><li class="hot">SoundCloud</li><li class="hot">Yandex Music</li><li class="hot">VK</li><li>Spotify*</li><li>and most other sites</li>
+      </ul>
+      <p class="intro">* Spotify protects its audio, so no extension can touch it directly. On Windows, the free optional Nightverb audio component adds the reverb at the system level, without bypassing any protection. The popup offers it only on sites that need it.</p>
+      <div class="gallery">
+        <img src="store/shot-2-en.png" width="1920" height="1200" alt="Speed in exact semitone steps" loading="lazy">
+        <img src="store/shot-3-en.png" width="1920" height="1200" alt="Reverb presets and fine controls" loading="lazy">
+      </div>
+    </section>
+
+    <section id="faq" class="faq">
+      <h2>FAQ</h2>
+      <details><summary>How do I make slowed + reverb music in my browser?</summary><p>Install Nightverb for Firefox, play a track and click the <b>Slowed + Reverb</b> preset in the Nightverb popup. It slows the track to 0.79x (four semitones lower) and adds a studio reverb. You don't need to download the song.</p></details>
+      <details><summary>Does it work on Spotify?</summary><p>Spotify protects its audio, so no browser extension can process it directly. On Windows, Nightverb's free optional audio component adds the reverb at the system level; the popup offers it only on such sites. It doesn't bypass any protection.</p></details>
+      <details><summary>Does it work on Yandex Music, YouTube and SoundCloud?</summary><p>Yes. Slow-down and reverb work right away on YouTube, SoundCloud, VK, Yandex Music and most other sites, on any operating system.</p></details>
+      <details><summary>Is it free?</summary><p>Yes: no trial, no subscription, no account. It's open source under the MIT license.</p></details>
+      <details><summary>Why 0.94x, 0.89x, 0.79x and not round numbers?</summary><p>Each button is exactly one musical semitone lower (0.5x is one octave), so a slowed track stays in tune instead of landing between notes. 0.79x is four semitones down, the classic slowed sound.</p></details>
+      <details><summary>Does it collect any data?</summary><p>No. Audio is processed locally and never recorded or sent anywhere. Settings stay in your browser.</p></details>
+      <details><summary>Chrome? Edge?</summary><p>Nightverb is for Firefox for now. A Chrome and Edge version is on the list.</p></details>
+    </section>
+  </main>
+
+  <footer>
+    <div class="row">
+      <span>Nightverb · MIT · made by <a href="https://github.com/prkldev">prkldev</a></span>
+      <span><a href="https://addons.mozilla.org/firefox/addon/nightverb-slowed-reverb/">Firefox Add-ons</a> · <a href="https://github.com/prkldev/nightverb/issues">Report a problem</a> · <a href="ru/" hreflang="ru">По-русски</a></span>
+    </div>
+  </footer>
+</div>
+</body>
+</html>
