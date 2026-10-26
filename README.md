@@ -11,6 +11,7 @@
 </p>
 
 <p align="center">
+  <a href="https://addons.mozilla.org/firefox/addon/nightverb-slowed-reverb/"><b>Get it for Firefox</b></a> ·
   <a href="https://github.com/prkldev/nightverb/releases/latest">Latest release</a> ·
   <a href="#по-русски">По-русски</a>
 </p>
@@ -130,6 +131,8 @@ from Windows Settings → Apps.
 
 **Nightverb** замедляет любую музыку в Firefox ровными музыкальными шагами и добавляет студийный реверб:
 YouTube, SoundCloud, VK, Яндекс Музыка, Spotify и почти любые сайты.
+
+**Установить:** [Nightverb в каталоге дополнений Firefox](https://addons.mozilla.org/ru/firefox/addon/nightverb-slowed-reverb/)
 
 - Замедление по полутонам (0.94 = на полутон ниже, 0.5 = на октаву), с понижением тона, как в настоящих
   slowed, или только темп. Плееры не могут сбросить скорость. Звонки не трогаются.
